@@ -1,0 +1,30 @@
+{
+  "schema": "1.0",
+  "type": "whmcs-addons",
+  "name": "email_verifier",
+  "license": "proprietary",
+  "category": "email & notifications ",
+  "description": {
+    "name": "Email Verifier",
+    "tagline": "Validating user email address and ensuring accurate communication between clients and your business.",
+    "long": "Email Verifier module that optimizes email verification processes, offering enhanced security and reliability by validating user email address and ensuring accurate communication between clients and your business.",
+    "features": [
+      "Email Verification",
+      "Block Access Unverified Clients"
+    ]
+  },
+  "logo": {
+    "filename": "logo.png"
+  },
+  "support": {
+    "homepage": "https:\/\/99modules.com\/",
+    "learn_more": "https:\/\/99modules.com\/",
+    "email": "support@99modules.com"
+  },
+  "authors": [
+    {
+      "name": "99modules",
+      "homepage": "https:\/\/99modules.com\/"
+    }
+  ]
+}
