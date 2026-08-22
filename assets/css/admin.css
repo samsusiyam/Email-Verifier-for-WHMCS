@@ -136,10 +136,20 @@
 
 /* Hide legacy bottom help button in nav row */
 .ev-admin-wrapper .nav-tabs > li.navbar-right,
+.ev-admin-wrapper .nav-tabs > li.pull-right,
 .ev-admin-wrapper .nav-pills > li.navbar-right,
-.ev-admin-wrapper .nav.navbar-nav > li.navbar-right,
-.ev-admin-wrapper .nav-tabs a[href*="siyam.bio.link"],
-.ev-admin-wrapper .navbar-nav a[href*="siyam.bio.link"] {
+.ev-admin-wrapper .nav-pills > li.pull-right,
+.ev-admin-wrapper .navbar-nav > li.navbar-right,
+.ev-admin-wrapper .navbar-nav > li.pull-right,
+.ev-admin-wrapper .nav-tabs a[href*="bio.link"],
+.ev-admin-wrapper .nav-pills a[href*="bio.link"],
+.ev-admin-wrapper .navbar-nav a[href*="bio.link"],
+.ev-admin-wrapper .nav-tabs a[href*="contact"],
+.ev-admin-wrapper .nav-pills a[href*="contact"],
+.ev-admin-wrapper .navbar-nav a[href*="contact"],
+.ev-admin-wrapper .nav a i.fa-question-circle,
+.ev-admin-wrapper .nav a i.fa-question,
+.ev-admin-wrapper .nav-tabs li:last-child a:has(.fa-question-circle) {
     display: none !important;
 }
 

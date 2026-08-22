@@ -69,6 +69,23 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Remove any duplicate Help button in nav-tabs / navbar or outside .ev-simple-header
+    wrapper.querySelectorAll('a, button, li').forEach(function(el) {
+        if (!el.closest('.ev-simple-header')) {
+            const txt = el.textContent.trim().toLowerCase();
+            const href = (el.getAttribute('href') || '').toLowerCase();
+            if (txt === 'help' || txt === '? help' || href.includes('bio.link') || href.includes('contact') || el.querySelector('.fa-question-circle, .fa-question, .fa-life-ring')) {
+                if (el.tagName === 'LI') {
+                    el.remove();
+                } else if (el.parentElement && el.parentElement.tagName === 'LI') {
+                    el.parentElement.remove();
+                } else {
+                    el.remove();
+                }
+            }
+        }
+    });
+
     // 3. Tab Icons
     const navLinks = wrapper.querySelectorAll('.nav-tabs a, ul.nav-pills a, .navbar-nav a');
     navLinks.forEach(function (link) {
