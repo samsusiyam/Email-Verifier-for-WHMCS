@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <a href="addonmodules.php?module=email_verifier&action=license" class="btn btn-default btn-sm">
                         <i class="fa fa-shield"></i> License
                     </a>
-                    <a href="https://hostnibo.com/contact" target="_blank" class="btn btn-default btn-sm">
-                        <i class="fa fa-life-ring"></i> Support
+                    <a href="https://siyam.bio.link/" target="_blank" class="btn btn-default btn-sm">
+                        <i class="fa fa-question-circle"></i> Help
                     </a>
                 </div>
             `;
