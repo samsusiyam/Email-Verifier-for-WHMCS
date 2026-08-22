@@ -138,6 +138,9 @@ function email_verifier_output($vars)
         "Settings" => ["href" => "c=settings", "address" => "settings", "istab" => false, "external" => false],
         "License" => ["href" => "action=license", "address" => "license", "istab" => false, "external" => false]
     ];
+
+    ob_start();
+
     $page_manager->startlang();
     $page_manager->header();
     if(isset($_REQUEST["saved"])) {
@@ -170,6 +173,33 @@ function email_verifier_output($vars)
         $controller->index($vars);
     }
     $page_manager->footer();
+
+    $output = ob_get_clean();
+
+    // Replace any legacy 99modules branding with Host Nibo
+    $output = str_ireplace(
+        [
+            'https://99modules.com/',
+            'https://99modules.com',
+            'http://99modules.com/',
+            'http://99modules.com',
+            '99modules',
+            '99Modules',
+            '99 Modules'
+        ],
+        [
+            'https://hostnibo.com/',
+            'https://hostnibo.com',
+            'https://hostnibo.com/',
+            'https://hostnibo.com',
+            'Host Nibo',
+            'Host Nibo',
+            'Host Nibo'
+        ],
+        $output
+    );
+
+    echo $output;
 }
 
 function email_verifier_clientarea($vars)
@@ -195,8 +225,69 @@ function email_verifier_clientarea($vars)
     }
     $controller = "\\WHMCS\\Module\\Addon\\Email_Verifier\\Clientarea\\" . $controller;
     $controller = new $controller();
+
+    ob_start();
     if(method_exists($controller, $action)) {
-        return $controller->{$action}($vars);
+        $response = $controller->{$action}($vars);
+    } else {
+        $response = $controller->index($vars);
     }
-    return $controller->index($vars);
+    $echoed = ob_get_clean();
+
+    if (!empty($echoed)) {
+        echo str_ireplace(
+            [
+                'https://99modules.com/',
+                'https://99modules.com',
+                'http://99modules.com/',
+                'http://99modules.com',
+                '99modules',
+                '99Modules',
+                '99 Modules'
+            ],
+            [
+                'https://hostnibo.com/',
+                'https://hostnibo.com',
+                'https://hostnibo.com/',
+                'https://hostnibo.com',
+                'Host Nibo',
+                'Host Nibo',
+                'Host Nibo'
+            ],
+            $echoed
+        );
+    }
+
+    if (is_array($response)) {
+        if (isset($response['vars']) && is_array($response['vars'])) {
+            foreach ($response['vars'] as $k => $val) {
+                if (is_string($val)) {
+                    $response['vars'][$k] = str_ireplace(
+                        [
+                            'https://99modules.com/',
+                            'https://99modules.com',
+                            'http://99modules.com/',
+                            'http://99modules.com',
+                            '99modules',
+                            '99Modules',
+                            '99 Modules'
+                        ],
+                        [
+                            'https://hostnibo.com/',
+                            'https://hostnibo.com',
+                            'https://hostnibo.com/',
+                            'https://hostnibo.com',
+                            'Host Nibo',
+                            'Host Nibo',
+                            'Host Nibo'
+                        ],
+                        $val
+                    );
+                }
+            }
+        }
+        return $response;
+    }
+
+    return $response;
 }
