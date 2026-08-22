@@ -1,74 +1,49 @@
 /**
- * Email Verifier - Ultra-Modern Admin UI/UX Theme (2026 SaaS Edition)
- * Developed by Host Nibo
- * Website: https://hostnibo.com
+ * Email Verifier - Clean & Minimalist Admin Theme
+ * Beautiful, Fast & Simple UI/UX
+ * Developed by Host Nibo (https://hostnibo.com)
  */
 
 :root {
     --ev-primary: #2563eb;
     --ev-primary-hover: #1d4ed8;
-    --ev-primary-light: #eff6ff;
-    --ev-primary-border: #bfdbfe;
+    --ev-primary-soft: #eff6ff;
     
-    --ev-success: #10b981;
-    --ev-success-hover: #059669;
-    --ev-success-bg: #ecfdf5;
-    --ev-success-border: #a7f3d0;
-    --ev-success-text: #065f46;
+    --ev-success: #16a34a;
+    --ev-success-bg: #f0fdf4;
+    --ev-success-border: #bbf7d0;
+    --ev-success-text: #166534;
     
-    --ev-danger: #ef4444;
-    --ev-danger-hover: #dc2626;
+    --ev-danger: #dc2626;
     --ev-danger-bg: #fef2f2;
     --ev-danger-border: #fecaca;
     --ev-danger-text: #991b1b;
     
-    --ev-warning: #f59e0b;
-    --ev-warning-hover: #d97706;
+    --ev-warning: #d97706;
     --ev-warning-bg: #fffbeb;
     --ev-warning-border: #fde68a;
     --ev-warning-text: #92400e;
     
-    --ev-info: #0ea5e9;
-    --ev-info-hover: #0284c7;
+    --ev-info: #0284c7;
     --ev-info-bg: #f0f9ff;
     --ev-info-border: #bae6fd;
     --ev-info-text: #075985;
     
-    --ev-purple: #8b5cf6;
-    --ev-purple-bg: #f5f3ff;
-    --ev-purple-border: #ddd6fe;
-    --ev-purple-text: #5b21b6;
-    
-    --ev-bg: #f8fafc;
-    --ev-card-bg: #ffffff;
-    --ev-text-main: #0f172a;
-    --ev-text-sub: #334155;
-    --ev-text-muted: #64748b;
     --ev-border: #e2e8f0;
-    --ev-border-focus: #93c5fd;
+    --ev-border-light: #f1f5f9;
+    --ev-text-main: #0f172a;
+    --ev-text-muted: #64748b;
     
-    --ev-radius-xs: 4px;
-    --ev-radius-sm: 8px;
-    --ev-radius-md: 12px;
-    --ev-radius-lg: 16px;
-    
-    --ev-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --ev-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
-    --ev-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.07);
-    --ev-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
-    --ev-shadow-glow: 0 0 15px rgba(37, 99, 235, 0.18);
+    --ev-radius: 8px;
+    --ev-radius-lg: 12px;
 }
 
-/* ==========================================================================
-   Global Module Wrapper & Layout
-   ========================================================================== */
+/* Base Wrapper */
 .ev-admin-wrapper {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: var(--ev-text-main);
-    line-height: 1.55;
-    margin-top: 16px;
-    margin-bottom: 50px;
-    letter-spacing: -0.01em;
+    line-height: 1.5;
+    margin: 16px 0 40px 0;
 }
 
 .ev-admin-wrapper * {
@@ -76,88 +51,57 @@
 }
 
 /* ==========================================================================
-   Hero Brand Header
+   Clean Simple Header
    ========================================================================== */
-.ev-hero-header {
+.ev-simple-header {
     background: #ffffff;
     border: 1px solid var(--ev-border);
     border-radius: var(--ev-radius-lg);
-    padding: 22px 28px;
-    margin-bottom: 24px;
+    padding: 16px 22px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 20px;
-    box-shadow: var(--ev-shadow-sm);
-    background-image: radial-gradient(at 100% 0%, rgba(37, 99, 235, 0.04) 0px, transparent 50%),
-                      radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.04) 0px, transparent 50%);
+    gap: 14px;
 }
 
-.ev-hero-left {
+.ev-simple-header-left {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 14px;
 }
 
-.ev-hero-logo {
-    height: 52px;
+.ev-simple-logo {
+    height: 38px;
     width: auto;
-    max-width: 140px;
     object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06));
 }
 
-.ev-hero-info h1 {
-    font-size: 22px;
-    font-weight: 800;
-    margin: 0 0 6px 0;
+.ev-simple-title h2 {
+    font-size: 18px;
+    font-weight: 700;
     color: var(--ev-text-main);
+    margin: 0 0 2px 0;
     display: flex;
     align-items: center;
-    gap: 10px;
-    letter-spacing: -0.02em;
+    gap: 8px;
 }
 
-.ev-hero-info p {
-    font-size: 13.5px;
+.ev-simple-title p {
+    font-size: 13px;
     color: var(--ev-text-muted);
     margin: 0;
-    line-height: 1.4;
 }
 
-.ev-badge-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 3px 10px;
-    font-size: 11.5px;
-    font-weight: 700;
-    border-radius: 20px;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-}
-
-.ev-badge-primary {
-    background: var(--ev-primary-light);
-    color: var(--ev-primary);
-    border: 1px solid var(--ev-primary-border);
-}
-
-.ev-badge-elms {
-    background: var(--ev-success-bg);
-    color: var(--ev-success-text);
-    border: 1px solid var(--ev-success-border);
-}
-
-.ev-hero-actions {
+.ev-simple-header-right {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 /* ==========================================================================
-   Navigation Tabs
+   Clean Minimalist Navigation Tabs
    ========================================================================== */
 .ev-admin-wrapper .nav-tabs,
 .ev-admin-wrapper ul.nav-pills,
@@ -165,13 +109,12 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     background: #ffffff;
-    padding: 8px 12px;
+    padding: 6px 8px;
     border-radius: var(--ev-radius-lg);
     border: 1px solid var(--ev-border) !important;
-    box-shadow: var(--ev-shadow-sm);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .ev-admin-wrapper .nav-tabs > li,
@@ -186,25 +129,23 @@
 .ev-admin-wrapper .nav.navbar-nav > li > a {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 18px !important;
+    gap: 7px;
+    padding: 8px 15px !important;
     font-size: 13.5px;
     font-weight: 600;
     color: #475569 !important;
     background: transparent !important;
     border: 1px solid transparent !important;
-    border-radius: var(--ev-radius-md) !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--ev-radius) !important;
+    transition: all 0.15s ease;
     text-decoration: none !important;
-    line-height: 1.4;
 }
 
 .ev-admin-wrapper .nav-tabs > li > a:hover,
 .ev-admin-wrapper .nav-pills > li > a:hover,
 .ev-admin-wrapper .nav.navbar-nav > li > a:hover {
     color: var(--ev-primary) !important;
-    background: var(--ev-primary-light) !important;
-    transform: translateY(-1px);
+    background: var(--ev-primary-soft) !important;
 }
 
 .ev-admin-wrapper .nav-tabs > li.active > a,
@@ -215,24 +156,20 @@
     color: #ffffff !important;
     background: var(--ev-primary) !important;
     border-color: var(--ev-primary) !important;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
-    transform: translateY(-1px);
 }
 
 /* ==========================================================================
-   Alerts & Notifications
+   Clean Alerts
    ========================================================================== */
 .ev-admin-wrapper .alert {
-    padding: 16px 20px;
-    border-radius: var(--ev-radius-md);
-    font-size: 14px;
+    padding: 13px 16px;
+    border-radius: var(--ev-radius);
+    font-size: 13.5px;
     font-weight: 500;
-    margin-bottom: 22px;
+    margin-bottom: 18px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    box-shadow: var(--ev-shadow-xs);
-    animation: evSlideDown 0.35s ease-out;
+    gap: 10px;
 }
 
 .ev-admin-wrapper .alert-success {
@@ -260,77 +197,62 @@
 }
 
 /* ==========================================================================
-   Cards & Panels
+   Clean Cards & Panels
    ========================================================================== */
 .ev-admin-wrapper .panel,
 .ev-admin-wrapper .card {
     background: #ffffff;
     border-radius: var(--ev-radius-lg) !important;
     border: 1px solid var(--ev-border) !important;
-    box-shadow: var(--ev-shadow-sm) !important;
-    margin-bottom: 26px;
+    margin-bottom: 22px;
     overflow: hidden;
-    transition: box-shadow 0.2s ease;
-}
-
-.ev-admin-wrapper .panel:hover,
-.ev-admin-wrapper .card:hover {
-    box-shadow: var(--ev-shadow-md) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
 }
 
 .ev-admin-wrapper .panel-heading,
 .ev-admin-wrapper .card-header {
-    background: #ffffff !important;
+    background: #fafafa !important;
     border-bottom: 1px solid var(--ev-border) !important;
-    padding: 18px 24px !important;
-    font-size: 16px;
+    padding: 14px 20px !important;
+    font-size: 15px;
     font-weight: 700;
     color: var(--ev-text-main) !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .ev-admin-wrapper .panel-title,
 .ev-admin-wrapper .card-title {
-    font-size: 16.5px;
+    font-size: 15px;
     font-weight: 700;
     color: var(--ev-text-main);
     margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
 .ev-admin-wrapper .panel-body,
 .ev-admin-wrapper .card-body {
-    padding: 24px !important;
+    padding: 20px !important;
 }
 
 .ev-admin-wrapper .panel-footer,
 .ev-admin-wrapper .card-footer {
-    background: #f8fafc !important;
+    background: #fafafa !important;
     border-top: 1px solid var(--ev-border) !important;
-    padding: 16px 24px !important;
+    padding: 12px 20px !important;
 }
 
 /* ==========================================================================
-   Data Tables
+   Clean Simple Data Tables
    ========================================================================== */
 .ev-admin-wrapper .table-responsive {
     border: 1px solid var(--ev-border);
-    border-radius: var(--ev-radius-md);
+    border-radius: var(--ev-radius);
     background: #ffffff;
     overflow-x: auto;
-    margin-bottom: 22px;
-    box-shadow: var(--ev-shadow-xs);
+    margin-bottom: 18px;
 }
 
 .ev-admin-wrapper .table {
     width: 100%;
     margin-bottom: 0 !important;
-    border-collapse: separate;
-    border-spacing: 0;
 }
 
 .ev-admin-wrapper .table > thead > tr > th {
@@ -339,20 +261,19 @@
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.6px;
-    padding: 14px 20px;
+    letter-spacing: 0.5px;
+    padding: 11px 16px;
     border-bottom: 1px solid var(--ev-border) !important;
     border-top: none !important;
     white-space: nowrap;
 }
 
 .ev-admin-wrapper .table > tbody > tr > td {
-    padding: 15px 20px;
+    padding: 12px 16px;
     font-size: 13.5px;
     color: #1e293b;
     border-top: 1px solid #f1f5f9;
     vertical-align: middle;
-    transition: background-color 0.15s ease;
 }
 
 .ev-admin-wrapper .table-hover > tbody > tr:hover > td,
@@ -360,37 +281,19 @@
     background-color: #f8fafc !important;
 }
 
-/* Client Avatar / Initial Circle */
-.ev-avatar-circle {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--ev-primary-light);
-    color: var(--ev-primary);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 12px;
-    margin-right: 10px;
-    border: 1px solid var(--ev-primary-border);
-    flex-shrink: 0;
-}
-
 /* ==========================================================================
-   Badges & Pills
+   Simple Status Badges
    ========================================================================== */
 .ev-admin-wrapper .label,
 .ev-admin-wrapper .badge {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    padding: 5px 12px;
-    font-size: 12px;
+    gap: 4px;
+    padding: 4px 10px;
+    font-size: 11.5px;
     font-weight: 600;
-    border-radius: 20px;
-    letter-spacing: 0.3px;
-    line-height: 1.3;
+    border-radius: 12px;
+    line-height: 1.2;
 }
 
 .ev-admin-wrapper .label-success,
@@ -429,18 +332,18 @@
 }
 
 /* ==========================================================================
-   Buttons
+   Simple Clean Buttons
    ========================================================================== */
 .ev-admin-wrapper .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-    padding: 9px 18px;
-    font-size: 13.5px;
+    gap: 6px;
+    padding: 7px 14px;
+    font-size: 13px;
     font-weight: 600;
-    border-radius: var(--ev-radius-sm);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--ev-radius);
+    transition: all 0.15s ease;
     cursor: pointer;
     border: 1px solid transparent;
     text-decoration: none !important;
@@ -448,19 +351,13 @@
 }
 
 .ev-admin-wrapper .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.09);
-}
-
-.ev-admin-wrapper .btn:active {
-    transform: translateY(0);
+    opacity: 0.92;
 }
 
 .ev-admin-wrapper .btn-sm,
 .ev-admin-wrapper .btn-xs {
-    padding: 6px 12px;
+    padding: 4px 9px;
     font-size: 12px;
-    border-radius: 6px;
 }
 
 .ev-admin-wrapper .btn-primary {
@@ -469,31 +366,16 @@
     color: #ffffff !important;
 }
 
-.ev-admin-wrapper .btn-primary:hover {
-    background-color: var(--ev-primary-hover) !important;
-    border-color: var(--ev-primary-hover) !important;
-}
-
 .ev-admin-wrapper .btn-success {
     background-color: var(--ev-success) !important;
     border-color: var(--ev-success) !important;
     color: #ffffff !important;
 }
 
-.ev-admin-wrapper .btn-success:hover {
-    background-color: var(--ev-success-hover) !important;
-    border-color: var(--ev-success-hover) !important;
-}
-
 .ev-admin-wrapper .btn-danger {
     background-color: var(--ev-danger) !important;
     border-color: var(--ev-danger) !important;
     color: #ffffff !important;
-}
-
-.ev-admin-wrapper .btn-danger:hover {
-    background-color: var(--ev-danger-hover) !important;
-    border-color: var(--ev-danger-hover) !important;
 }
 
 .ev-admin-wrapper .btn-default {
@@ -504,56 +386,47 @@
 
 .ev-admin-wrapper .btn-default:hover {
     background-color: #f8fafc !important;
-    border-color: #cbd5e1 !important;
 }
 
 /* ==========================================================================
-   Form Controls & Settings UI
+   Clean Form Controls & Switch
    ========================================================================== */
 .ev-admin-wrapper .form-group {
-    margin-bottom: 22px;
+    margin-bottom: 18px;
 }
 
 .ev-admin-wrapper label.control-label {
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 600;
     color: #334155;
-    margin-bottom: 7px;
+    margin-bottom: 6px;
     display: inline-block;
 }
 
 .ev-admin-wrapper .form-control {
     background-color: #ffffff;
     border: 1px solid var(--ev-border);
-    border-radius: var(--ev-radius-sm);
-    padding: 10px 15px;
-    font-size: 14px;
+    border-radius: var(--ev-radius);
+    padding: 8px 12px;
+    font-size: 13.5px;
     color: var(--ev-text-main);
     box-shadow: none;
-    transition: all 0.2s ease-in-out;
+    transition: border-color 0.15s ease;
     height: auto;
 }
 
 .ev-admin-wrapper .form-control:focus {
     border-color: var(--ev-primary);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
     outline: none;
 }
 
-/* Modern iOS-Style Toggle Switch */
-.ev-toggle-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    user-select: none;
-}
-
+/* Minimalist Toggle Switch */
 .ev-toggle-switch {
     position: relative;
     display: inline-block;
-    width: 48px;
-    height: 26px;
+    width: 40px;
+    height: 22px;
     vertical-align: middle;
     margin: 0 !important;
 }
@@ -573,21 +446,21 @@
     right: 0;
     bottom: 0;
     background-color: #cbd5e1;
-    transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 26px;
+    transition: .2s ease;
+    border-radius: 22px;
 }
 
 .ev-toggle-slider:before {
     position: absolute;
     content: "";
-    height: 20px;
-    width: 20px;
+    height: 16px;
+    width: 16px;
     left: 3px;
     bottom: 3px;
     background-color: white;
-    transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: .2s ease;
     border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .ev-toggle-switch input:checked + .ev-toggle-slider {
@@ -595,105 +468,60 @@
 }
 
 .ev-toggle-switch input:checked + .ev-toggle-slider:before {
-    transform: translateX(22px);
+    transform: translateX(18px);
 }
 
-/* ==========================================================================
-   Interactive Quick Search & Copy Buttons
-   ========================================================================== */
-.ev-quick-search-box {
-    margin-bottom: 16px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.ev-quick-search-input {
-    position: relative;
-    max-width: 280px;
-    width: 100%;
-}
-
-.ev-quick-search-input input {
-    width: 100%;
-    padding: 8px 14px 8px 34px !important;
-    font-size: 13px !important;
-    border-radius: 8px !important;
-    border: 1px solid var(--ev-border) !important;
-}
-
-.ev-quick-search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #94a3b8;
-    font-size: 13px;
-    pointer-events: none;
-}
-
+/* Clean Copy Button */
 .ev-copy-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     background: #f1f5f9;
     border: 1px solid #e2e8f0;
-    border-radius: 5px;
+    border-radius: 4px;
     color: #64748b;
-    padding: 3px 7px;
+    padding: 2px 6px;
     font-size: 11px;
     margin-left: 6px;
     cursor: pointer;
     transition: all 0.15s ease;
-    vertical-align: middle;
 }
 
 .ev-copy-btn:hover {
     background: #e2e8f0;
     color: var(--ev-primary);
-    transform: scale(1.05);
 }
 
-/* ==========================================================================
-   Toast Notification
-   ========================================================================== */
+/* Clean Search Bar */
+.ev-search-container {
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ev-search-input {
+    max-width: 250px;
+    width: 100%;
+    font-size: 13px !important;
+    padding: 6px 12px !important;
+    border-radius: var(--ev-radius) !important;
+    border: 1px solid var(--ev-border) !important;
+}
+
+/* Clean Toast */
 .ev-toast {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
+    bottom: 20px;
+    right: 20px;
     background: #0f172a;
     color: #ffffff;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-size: 13.5px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
     font-weight: 500;
-    box-shadow: var(--ev-shadow-lg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 99999;
     display: flex;
     align-items: center;
-    gap: 10px;
-    animation: evSlideUp 0.3s ease-out;
-}
-
-/* Animations */
-@keyframes evSlideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes evSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    gap: 8px;
 }

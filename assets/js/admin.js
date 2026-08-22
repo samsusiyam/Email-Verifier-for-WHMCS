@@ -1,88 +1,82 @@
 /**
- * Email Verifier - Ultra-Modern Admin JavaScript Enhancements
- * Developed by Host Nibo
- * Website: https://hostnibo.com
+ * Email Verifier - Clean & Simple Admin JS Enhancements
+ * Developed by Host Nibo (https://hostnibo.com)
  */
 
 document.addEventListener('DOMContentLoaded', function () {
     const wrapper = document.querySelector('.ev-admin-wrapper') || document.body;
 
     // 1. Toast Notification Helper
-    function showToast(msg, icon = 'fa-check-circle') {
+    function showToast(msg) {
         const existing = document.querySelector('.ev-toast');
         if (existing) existing.remove();
 
         const toast = document.createElement('div');
         toast.className = 'ev-toast';
-        toast.innerHTML = `<i class="fa ${icon}" style="color: #10b981; font-size: 16px;"></i> <span>${msg}</span>`;
+        toast.innerHTML = `<i class="fa fa-check-circle" style="color: #4ade80;"></i> <span>${msg}</span>`;
         document.body.appendChild(toast);
 
         setTimeout(function () {
-            toast.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            toast.style.transition = 'opacity 0.3s ease';
             toast.style.opacity = '0';
-            toast.style.transform = 'translateY(10px)';
-            setTimeout(() => toast.remove(), 400);
-        }, 3000);
+            setTimeout(() => toast.remove(), 300);
+        }, 2500);
     }
 
-    // 2. Inject Brand Hero Header if not already present
-    if (!wrapper.querySelector('.ev-hero-header')) {
+    // 2. Simple & Clean Header Bar
+    if (!wrapper.querySelector('.ev-simple-header')) {
         const nav = wrapper.querySelector('.nav-tabs, ul.nav-pills, .navbar-nav');
         if (nav) {
-            const hero = document.createElement('div');
-            hero.className = 'ev-hero-header';
-            hero.innerHTML = `
-                <div class="ev-hero-left">
-                    <img src="../modules/addons/email_verifier/logo.png" alt="Email Verifier" class="ev-hero-logo" onerror="this.style.display='none'">
-                    <div class="ev-hero-info">
-                        <h1>
-                            Email Verifier
-                            <span class="ev-badge-pill ev-badge-primary"><i class="fa fa-code-fork"></i> v1.1.0</span>
-                            <span class="ev-badge-pill ev-badge-elms"><i class="fa fa-shield"></i> Host Nibo ELMS</span>
-                        </h1>
-                        <p>Validating client email addresses & securing communication for your WHMCS.</p>
+            const header = document.createElement('div');
+            header.className = 'ev-simple-header';
+            header.innerHTML = `
+                <div class="ev-simple-header-left">
+                    <img src="../modules/addons/email_verifier/logo.png" alt="Email Verifier" class="ev-simple-logo" onerror="this.style.display='none'">
+                    <div class="ev-simple-title">
+                        <h2>Email Verifier</h2>
+                        <p>Email verification and fraud protection module for WHMCS</p>
                     </div>
                 </div>
-                <div class="ev-hero-actions">
+                <div class="ev-simple-header-right">
                     <a href="addonmodules.php?module=email_verifier&action=license" class="btn btn-default btn-sm">
-                        <i class="fa fa-key text-primary"></i> License Info
+                        <i class="fa fa-shield"></i> License
                     </a>
                     <a href="https://hostnibo.com/contact" target="_blank" class="btn btn-default btn-sm">
-                        <i class="fa fa-life-ring text-info"></i> Support
+                        <i class="fa fa-life-ring"></i> Support
                     </a>
                 </div>
             `;
-            nav.parentNode.insertBefore(hero, nav);
+            nav.parentNode.insertBefore(header, nav);
         }
     }
 
-    // 3. Tab Icons & Live Row Count Badges
+    // 3. Tab Icons
     const navLinks = wrapper.querySelectorAll('.nav-tabs a, ul.nav-pills a, .navbar-nav a');
     navLinks.forEach(function (link) {
         const text = link.textContent.trim().toLowerCase();
         let iconClass = 'fa-folder';
 
         if (text.includes('verified clients')) {
-            iconClass = 'fa-check-circle text-success';
+            iconClass = 'fa-check-circle';
         } else if (text.includes('unverified clients')) {
-            iconClass = 'fa-user-times text-warning';
+            iconClass = 'fa-user-times';
         } else if (text.includes('banned')) {
-            iconClass = 'fa-ban text-danger';
+            iconClass = 'fa-ban';
         } else if (text.includes('settings')) {
-            iconClass = 'fa-sliders text-primary';
+            iconClass = 'fa-cog';
         } else if (text.includes('license')) {
-            iconClass = 'fa-shield text-info';
+            iconClass = 'fa-shield';
         }
 
         if (!link.querySelector('i.fa') && iconClass) {
             const icon = document.createElement('i');
             icon.className = 'fa ' + iconClass;
-            icon.style.marginRight = '6px';
+            icon.style.marginRight = '5px';
             link.prepend(icon);
         }
     });
 
-    // 4. Convert Checkboxes in Settings to iOS-Style Toggle Switches
+    // 4. Clean Toggle Switches for Settings Checkboxes
     const checkboxes = wrapper.querySelectorAll('.form-group input[type="checkbox"]');
     checkboxes.forEach(function (cb) {
         if (cb.dataset.evEnhanced) return;
@@ -102,24 +96,11 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleWrapper.appendChild(slider);
     });
 
-    // 5. Enhance Table Rows with Client Avatar Circle & Copy Buttons
+    // 5. Clean Copy Button for Emails & IPs
     const tables = wrapper.querySelectorAll('.table');
     tables.forEach(function (table) {
         const rows = table.querySelectorAll('tbody tr');
         rows.forEach(function (row) {
-            const firstCell = row.cells[0];
-            if (firstCell && !firstCell.querySelector('.ev-avatar-circle') && row.cells.length > 2) {
-                const cellText = firstCell.textContent.trim();
-                if (cellText && isNaN(cellText)) {
-                    const initials = cellText.substring(0, 2).toUpperCase();
-                    const avatar = document.createElement('span');
-                    avatar.className = 'ev-avatar-circle';
-                    avatar.textContent = initials;
-                    firstCell.prepend(avatar);
-                }
-            }
-
-            // Copy button for Emails & IPs
             row.querySelectorAll('td').forEach(function (cell) {
                 const text = cell.textContent.trim();
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -129,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const copyBtn = document.createElement('button');
                     copyBtn.type = 'button';
                     copyBtn.className = 'ev-copy-btn';
-                    copyBtn.title = 'Copy to clipboard';
+                    copyBtn.title = 'Copy';
                     copyBtn.innerHTML = '<i class="fa fa-clone"></i>';
 
                     copyBtn.addEventListener('click', function (e) {
@@ -138,8 +119,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (navigator.clipboard) {
                             navigator.clipboard.writeText(text).then(function () {
                                 copyBtn.innerHTML = '<i class="fa fa-check text-success"></i>';
-                                showToast(`Copied "${text}" to clipboard!`);
-                                setTimeout(() => copyBtn.innerHTML = '<i class="fa fa-clone"></i>', 1800);
+                                showToast(`Copied: ${text}`);
+                                setTimeout(() => copyBtn.innerHTML = '<i class="fa fa-clone"></i>', 1500);
                             });
                         }
                     });
@@ -149,18 +130,15 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        // 6. Live Quick Search Box above tables
-        if (rows.length > 2 && !table.closest('.ev-admin-wrapper')?.querySelector('.ev-quick-search-box')) {
-            const searchBox = document.createElement('div');
-            searchBox.className = 'ev-quick-search-box';
-            searchBox.innerHTML = `
-                <div class="ev-quick-search-input">
-                    <i class="fa fa-search ev-quick-search-icon"></i>
-                    <input type="text" class="form-control" placeholder="Search table rows...">
-                </div>
+        // 6. Simple Quick Search Box above tables
+        if (rows.length > 2 && !table.closest('.ev-admin-wrapper')?.querySelector('.ev-search-container')) {
+            const searchContainer = document.createElement('div');
+            searchContainer.className = 'ev-search-container';
+            searchContainer.innerHTML = `
+                <input type="text" class="form-control ev-search-input" placeholder="Search table...">
             `;
 
-            const input = searchBox.querySelector('input');
+            const input = searchContainer.querySelector('input');
             input.addEventListener('input', function () {
                 const q = this.value.toLowerCase().trim();
                 rows.forEach(function (r) {
@@ -168,18 +146,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             });
 
-            table.closest('.table-responsive')?.parentNode.insertBefore(searchBox, table.closest('.table-responsive'));
+            table.closest('.table-responsive')?.parentNode.insertBefore(searchContainer, table.closest('.table-responsive'));
         }
     });
 
-    // 7. Auto-dismiss Success Alerts gently
+    // 7. Auto-dismiss Success Alerts
     const successAlerts = wrapper.querySelectorAll('.alert-success');
     successAlerts.forEach(function (alert) {
         setTimeout(function () {
-            alert.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            alert.style.transition = 'opacity 0.4s ease';
             alert.style.opacity = '0';
-            alert.style.transform = 'translateY(-6px)';
-            setTimeout(() => alert.style.display = 'none', 500);
+            setTimeout(() => alert.style.display = 'none', 400);
         }, 5000);
     });
 });
