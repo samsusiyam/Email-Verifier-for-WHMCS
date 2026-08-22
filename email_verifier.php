@@ -128,7 +128,7 @@ function email_verifier_output($vars)
     }
     $LANG = $vars["_lang"];
     $page_manager = new NNM_Page_Builder();
-    $page_manager->modulename = "Email Verifier";
+    $page_manager->modulename = "";
     $page_manager->modulelink = "email_verifier";
     $page_manager->helplink = "https://hostnibo.com/contact";
     $page_manager->menu = [

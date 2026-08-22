@@ -38,6 +38,16 @@
     --ev-radius-lg: 12px;
 }
 
+/* Hide legacy standalone pagebuilder header title */
+.ev-admin-wrapper > h1,
+.ev-admin-wrapper > h2,
+.ev-admin-wrapper > .page-header,
+.ev-admin-wrapper .page-header,
+.ev-admin-wrapper > .header,
+.ev-admin-wrapper > p.page-header {
+    display: none !important;
+}
+
 /* Base Wrapper */
 .ev-admin-wrapper {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;

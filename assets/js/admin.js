@@ -27,6 +27,16 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!wrapper.querySelector('.ev-simple-header')) {
         const nav = wrapper.querySelector('.nav-tabs, ul.nav-pills, .navbar-nav');
         if (nav) {
+            // Remove legacy duplicate title element before nav if exists
+            let prev = nav.previousElementSibling;
+            while (prev) {
+                const txt = prev.textContent.trim();
+                if (txt === 'Email Verifier' || prev.tagName === 'H1' || prev.tagName === 'H2' || prev.classList.contains('page-header')) {
+                    prev.style.display = 'none';
+                }
+                prev = prev.previousElementSibling;
+            }
+
             const header = document.createElement('div');
             header.className = 'ev-simple-header';
             header.innerHTML = `
@@ -49,6 +59,15 @@ document.addEventListener('DOMContentLoaded', function () {
             nav.parentNode.insertBefore(header, nav);
         }
     }
+
+    // Hide any orphan legacy title element inside wrapper
+    wrapper.querySelectorAll('h1, h2, h3, h4, div.page-header, div.header').forEach(function(el) {
+        if (!el.closest('.ev-simple-header') && !el.closest('.panel') && !el.closest('.card') && !el.closest('.alert') && !el.closest('.nav-tabs')) {
+            if (el.textContent.trim() === 'Email Verifier') {
+                el.style.display = 'none';
+            }
+        }
+    });
 
     // 3. Tab Icons
     const navLinks = wrapper.querySelectorAll('.nav-tabs a, ul.nav-pills a, .navbar-nav a');
