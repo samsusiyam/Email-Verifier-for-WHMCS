@@ -3,7 +3,7 @@
   "type": "whmcs-addons",
   "name": "email_verifier",
   "license": "proprietary",
-  "category": "email & notifications ",
+  "category": "email & notifications",
   "description": {
     "name": "Email Verifier",
     "tagline": "Validating user email address and ensuring accurate communication between clients and your business.",
@@ -17,13 +17,13 @@
     "filename": "logo.png"
   },
   "support": {
-    "homepage": "https:\/\/siyam.bio.link\/",
+    "homepage": "https://hostnibo.com/contact",
     "email": "support@hostnibo.com"
   },
   "authors": [
     {
-      "name": "HostNibo",
-      "homepage": "https:\/\/hostnibo.com\/"
+      "name": "Host Nibo",
+      "homepage": "https://hostnibo.com/"
     }
   ]
 }

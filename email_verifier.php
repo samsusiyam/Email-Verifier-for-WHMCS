@@ -3,17 +3,55 @@ if(!defined("WHMCS")) {
     exit("This file cannot be accessed directly");
 }
 
+require_once __DIR__ . '/app/License/LicenseManager.php';
+
+use EmailVerifier\License\LicenseManager;
+
 function email_verifier_license($licensekey = "")
 {
-    $results["status"] = "Active";
-    $results["licensestatus"] = "License is active";
-    $results["labeltype"] = "success";
-    return $results;
+    require_once __DIR__ . '/app/License/LicenseManager.php';
+    $lm = LicenseManager::getInstance();
+    $isLicensed = LicenseManager::isLicensed(false);
+    if ($isLicensed) {
+        return [
+            "status" => "Active",
+            "licensestatus" => "License is active",
+            "labeltype" => "success"
+        ];
+    }
+    $details = $lm->getDetails(false);
+    $st = ucfirst($details['status'] ?? 'Invalid');
+    return [
+        "status" => $st,
+        "licensestatus" => "License status: " . $st,
+        "labeltype" => "danger"
+    ];
 }
 
 function email_verifier_config()
 {
-    return ["name" => "Email Verifier", "description" => "Email Verifier module that optimizes email verification processes, offering enhanced security and reliability by validating user email address and ensuring accurate communication between clients and your WHMCS.", "version" => "1.1.0", "author" => "<a href='https://hostnibo.com/' target='_blank'>HostNibo</a>", "language" => "english", "fields" => ["nodeletedb" => ["FriendlyName" => "Database Table", "Type" => "yesno", "Size" => "25", "Description" => "Tick this box to delete the tables from the database when deactivating the module."],]];
+    return [
+        "name" => "Email Verifier",
+        "description" => "Email Verifier module that optimizes email verification processes, offering enhanced security and reliability by validating user email address and ensuring accurate communication between clients and your WHMCS.",
+        "version" => "1.1.0",
+        "author" => "<a href=\"https://hostnibo.com/\" target=\"_blank\">Host Nibo</a>",
+        "language" => "english",
+        "fields" => [
+            "license_key" => [
+                "FriendlyName" => "License Key",
+                "Type" => "text",
+                "Size" => "40",
+                "Description" => "Enter your Host Nibo ELMS license key",
+                "Default" => ""
+            ],
+            "nodeletedb" => [
+                "FriendlyName" => "Database Table",
+                "Type" => "yesno",
+                "Size" => "25",
+                "Description" => "Tick this box to delete the tables from the database when deactivating the module."
+            ],
+        ]
+    ];
 }
 
 function email_verifier_activate()
@@ -75,102 +113,90 @@ function email_verifier_deactivate()
 
 function email_verifier_output($vars)
 {
-    $licensestatus = email_verifier_license();
-    switch ($licensestatus["status"]) {
-        case "Active":
-            if(!class_exists("NNM_Page_Builder")) {
-                include __DIR__ . DIRECTORY_SEPARATOR . "core" . DIRECTORY_SEPARATOR . "pagebuilder.php";
-            }
-            $LANG = $vars["_lang"];
-            $page_manager = new NNM_Page_Builder();
-            $page_manager->modulename = "Email Verifier";
-            $page_manager->modulelink = "email_verifier";
-            $page_manager->helplink = "https://siyam.bio.link/";
-            $page_manager->menu = ["Verified Clients" => ["href" => "", "istab" => false, "external" => false], "Unverified Clients" => ["href" => "c=UnverifiedClients", "address" => "UnverifiedClients", "istab" => false, "external" => false], "Banned IPs/Emails" => ["href" => "c=banned", "address" => "banned", "istab" => false, "external" => false], "Settings" => ["href" => "c=settings", "address" => "settings", "istab" => false, "external" => false]];
-            $page_manager->startlang();
-            $page_manager->header();
-            if(isset($_REQUEST["saved"])) {
-                echo "<div class=\"alert alert-success\">Saved Successfully!</div>";
-            }
-            if(isset($_REQUEST["deleted"])) {
-                echo "<div class=\"alert alert-success\">Deleted Successfully!</div>";
-            }
-            if(isset($_REQUEST["sent"])) {
-                echo "<div class=\"alert alert-success\">Sent Successfully!</div>";
-            }
-            if(isset($_REQUEST["unverified"])) {
-                echo "<div class=\"alert alert-success\">Unverified Successfully!</div>";
-            }
-            if(isset($_REQUEST["verified"])) {
-                echo "<div class=\"alert alert-success\">Verified Successfully!</div>";
-            }
-            $controller = isset($_REQUEST["c"]) ? $_REQUEST["c"] : "VerifiedClients";
-            $action = isset($_REQUEST["a"]) ? $_REQUEST["a"] : "index";
-            $controller .= "Controller";
-            $controller = ucfirst($controller);
-            if(!class_exists("\\WHMCS\\Module\\Addon\\Email_Verifier\\Adminarea\\" . $controller)) {
-                redir("module=email_verifier", "addonmodules.php");
-            }
-            $controller = "\\WHMCS\\Module\\Addon\\Email_Verifier\\Adminarea\\" . $controller;
-            $controller = new $controller();
-            if(method_exists($controller, $action)) {
-                $controller->{$action}($vars);
-            } else {
-                $controller->index($vars);
-            }
-            $page_manager->footer();
-            break;
-        case "Invalid":
-            echo "License key is Invalid";
-            return "";
-            break;
-        case "Expired":
-            echo "License key is Expired";
-            return "";
-            break;
-        case "Suspended":
-            echo "License key is Suspended";
-            return "";
-            break;
-        default:
-            echo "Invalid Response";
-            return "";
+    require_once __DIR__ . '/app/License/LicenseManager.php';
+    $action = $_GET['action'] ?? ($_GET['a'] ?? '');
+
+    // 🔒 ELMS License Gatekeeper: Lock dashboard if license is not active
+    $isLicensed = LicenseManager::isLicensed(true);
+    if (!$isLicensed || $action === 'license') {
+        require_once __DIR__ . '/admin/license.php';
+        return;
     }
+
+    if(!class_exists("NNM_Page_Builder")) {
+        include __DIR__ . DIRECTORY_SEPARATOR . "core" . DIRECTORY_SEPARATOR . "pagebuilder.php";
+    }
+    $LANG = $vars["_lang"];
+    $page_manager = new NNM_Page_Builder();
+    $page_manager->modulename = "Email Verifier";
+    $page_manager->modulelink = "email_verifier";
+    $page_manager->helplink = "https://hostnibo.com/contact";
+    $page_manager->menu = [
+        "Verified Clients" => ["href" => "", "istab" => false, "external" => false],
+        "Unverified Clients" => ["href" => "c=UnverifiedClients", "address" => "UnverifiedClients", "istab" => false, "external" => false],
+        "Banned IPs/Emails" => ["href" => "c=banned", "address" => "banned", "istab" => false, "external" => false],
+        "Settings" => ["href" => "c=settings", "address" => "settings", "istab" => false, "external" => false],
+        "License" => ["href" => "action=license", "address" => "license", "istab" => false, "external" => false]
+    ];
+    $page_manager->startlang();
+    $page_manager->header();
+    if(isset($_REQUEST["saved"])) {
+        echo "<div class=\"alert alert-success\">Saved Successfully!</div>";
+    }
+    if(isset($_REQUEST["deleted"])) {
+        echo "<div class=\"alert alert-success\">Deleted Successfully!</div>";
+    }
+    if(isset($_REQUEST["sent"])) {
+        echo "<div class=\"alert alert-success\">Sent Successfully!</div>";
+    }
+    if(isset($_REQUEST["unverified"])) {
+        echo "<div class=\"alert alert-success\">Unverified Successfully!</div>";
+    }
+    if(isset($_REQUEST["verified"])) {
+        echo "<div class=\"alert alert-success\">Verified Successfully!</div>";
+    }
+    $controller = isset($_REQUEST["c"]) ? $_REQUEST["c"] : "VerifiedClients";
+    $action = isset($_REQUEST["a"]) ? $_REQUEST["a"] : "index";
+    $controller .= "Controller";
+    $controller = ucfirst($controller);
+    if(!class_exists("\\WHMCS\\Module\\Addon\\Email_Verifier\\Adminarea\\" . $controller)) {
+        redir("module=email_verifier", "addonmodules.php");
+    }
+    $controller = "\\WHMCS\\Module\\Addon\\Email_Verifier\\Adminarea\\" . $controller;
+    $controller = new $controller();
+    if(method_exists($controller, $action)) {
+        $controller->{$action}($vars);
+    } else {
+        $controller->index($vars);
+    }
+    $page_manager->footer();
 }
 
 function email_verifier_clientarea($vars)
 {
-    $licensestatus = email_verifier_license();
-    switch ($licensestatus["status"]) {
-        case "Active":
-            $controller = isset($_REQUEST["controller"]) ? $_REQUEST["controller"] : "client";
-            $action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : "index";
-            $controller .= "controller";
-            $controller = ucfirst($controller);
-            if(!class_exists("\\WHMCS\\Module\\Addon\\Email_Verifier\\Clientarea\\" . $controller)) {
-                $controller = "EmailVerifierController";
-            }
-            $controller = "\\WHMCS\\Module\\Addon\\Email_Verifier\\Clientarea\\" . $controller;
-            $controller = new $controller();
-            if(method_exists($controller, $action)) {
-                return $controller->{$action}($vars);
-            }
-            return $controller->index($vars);
-            break;
-        case "Invalid":
-            echo "License key is Invalid";
-            return "";
-            break;
-        case "Expired":
-            echo "License key is Expired";
-            return "";
-            break;
-        case "Suspended":
-            echo "License key is Suspended";
-            return "";
-            break;
-        default:
-            echo "Invalid Response";
-            return "";
+    require_once __DIR__ . '/app/License/LicenseManager.php';
+    if (!LicenseManager::isLicensed(false)) {
+        return [
+            'pagetitle' => 'License Required',
+            'breadcrumb' => ['index.php?m=email_verifier' => 'Email Verifier'],
+            'templatefile' => '',
+            'vars' => [
+                'error' => 'This module is not active or licensed.'
+            ]
+        ];
     }
+
+    $controller = isset($_REQUEST["controller"]) ? $_REQUEST["controller"] : "client";
+    $action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : "index";
+    $controller .= "controller";
+    $controller = ucfirst($controller);
+    if(!class_exists("\\WHMCS\\Module\\Addon\\Email_Verifier\\Clientarea\\" . $controller)) {
+        $controller = "EmailVerifierController";
+    }
+    $controller = "\\WHMCS\\Module\\Addon\\Email_Verifier\\Clientarea\\" . $controller;
+    $controller = new $controller();
+    if(method_exists($controller, $action)) {
+        return $controller->{$action}($vars);
+    }
+    return $controller->index($vars);
 }
