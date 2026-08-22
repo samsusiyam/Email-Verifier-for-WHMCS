@@ -199,7 +199,15 @@ function email_verifier_output($vars)
         $output
     );
 
+    // Inject modern Admin CSS & JS Theme
+    $cssVer = file_exists(__DIR__ . '/assets/css/admin.css') ? filemtime(__DIR__ . '/assets/css/admin.css') : '1.0';
+    $jsVer  = file_exists(__DIR__ . '/assets/js/admin.js') ? filemtime(__DIR__ . '/assets/js/admin.js') : '1.0';
+
+    echo '<link rel="stylesheet" href="../modules/addons/email_verifier/assets/css/admin.css?v=' . $cssVer . '">';
+    echo '<div class="ev-admin-wrapper">';
     echo $output;
+    echo '</div>';
+    echo '<script src="../modules/addons/email_verifier/assets/js/admin.js?v=' . $jsVer . '"></script>';
 }
 
 function email_verifier_clientarea($vars)

@@ -1,0 +1,530 @@
+/**
+ * Email Verifier - Modern Admin UI/UX Theme
+ * Developed by Host Nibo
+ * Website: https://hostnibo.com
+ */
+
+:root {
+    --ev-primary: #2563eb;
+    --ev-primary-hover: #1d4ed8;
+    --ev-primary-light: #eff6ff;
+    --ev-success: #10b981;
+    --ev-success-bg: #ecfdf5;
+    --ev-success-border: #a7f3d0;
+    --ev-danger: #ef4444;
+    --ev-danger-bg: #fef2f2;
+    --ev-danger-border: #fecaca;
+    --ev-warning: #f59e0b;
+    --ev-warning-bg: #fffbeb;
+    --ev-warning-border: #fde68a;
+    --ev-info: #0ea5e9;
+    --ev-info-bg: #f0f9ff;
+    --ev-info-border: #bae6fd;
+    --ev-bg: #f8fafc;
+    --ev-card-bg: #ffffff;
+    --ev-text-main: #0f172a;
+    --ev-text-muted: #64748b;
+    --ev-border: #e2e8f0;
+    --ev-border-focus: #93c5fd;
+    --ev-radius-sm: 6px;
+    --ev-radius-md: 10px;
+    --ev-radius-lg: 14px;
+    --ev-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --ev-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --ev-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================================================================
+   Global Module Wrapper & Typography
+   ========================================================================== */
+.ev-admin-wrapper {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ev-text-main);
+    line-height: 1.5;
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+.ev-admin-wrapper * {
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Top Header & Navigation Bar
+   ========================================================================== */
+.ev-admin-wrapper .nav-tabs,
+.ev-admin-wrapper ul.nav-pills,
+.ev-admin-wrapper .nav.navbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    padding: 10px 14px;
+    border-radius: var(--ev-radius-lg);
+    border: 1px solid var(--ev-border) !important;
+    box-shadow: var(--ev-shadow-sm);
+    margin-bottom: 24px;
+}
+
+.ev-admin-wrapper .nav-tabs > li,
+.ev-admin-wrapper .nav-pills > li,
+.ev-admin-wrapper .nav.navbar-nav > li {
+    float: none !important;
+    margin: 0 !important;
+}
+
+.ev-admin-wrapper .nav-tabs > li > a,
+.ev-admin-wrapper .nav-pills > li > a,
+.ev-admin-wrapper .nav.navbar-nav > li > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px !important;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #475569 !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: var(--ev-radius-md) !important;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none !important;
+    line-height: 1.4;
+}
+
+.ev-admin-wrapper .nav-tabs > li > a:hover,
+.ev-admin-wrapper .nav-pills > li > a:hover,
+.ev-admin-wrapper .nav.navbar-nav > li > a:hover {
+    color: var(--ev-primary) !important;
+    background: var(--ev-primary-light) !important;
+    transform: translateY(-1px);
+}
+
+.ev-admin-wrapper .nav-tabs > li.active > a,
+.ev-admin-wrapper .nav-pills > li.active > a,
+.ev-admin-wrapper .nav.navbar-nav > li.active > a,
+.ev-admin-wrapper .nav-tabs > li.active > a:focus,
+.ev-admin-wrapper .nav-tabs > li.active > a:hover {
+    color: #ffffff !important;
+    background: var(--ev-primary) !important;
+    border-color: var(--ev-primary) !important;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Alert Messages
+   ========================================================================== */
+.ev-admin-wrapper .alert {
+    padding: 14px 18px;
+    border-radius: var(--ev-radius-md);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--ev-shadow-sm);
+    animation: evFadeIn 0.3s ease-out;
+}
+
+.ev-admin-wrapper .alert-success {
+    background-color: var(--ev-success-bg);
+    border: 1px solid var(--ev-success-border);
+    color: #065f46;
+}
+
+.ev-admin-wrapper .alert-danger {
+    background-color: var(--ev-danger-bg);
+    border: 1px solid var(--ev-danger-border);
+    color: #991b1b;
+}
+
+.ev-admin-wrapper .alert-warning {
+    background-color: var(--ev-warning-bg);
+    border: 1px solid var(--ev-warning-border);
+    color: #92400e;
+}
+
+.ev-admin-wrapper .alert-info {
+    background-color: var(--ev-info-bg);
+    border: 1px solid var(--ev-info-border);
+    color: #075985;
+}
+
+/* ==========================================================================
+   Panels & Cards
+   ========================================================================== */
+.ev-admin-wrapper .panel,
+.ev-admin-wrapper .card {
+    background: #ffffff;
+    border-radius: var(--ev-radius-lg) !important;
+    border: 1px solid var(--ev-border) !important;
+    box-shadow: var(--ev-shadow) !important;
+    margin-bottom: 26px;
+    overflow: hidden;
+}
+
+.ev-admin-wrapper .panel-heading,
+.ev-admin-wrapper .card-header {
+    background: #f8fafc !important;
+    border-bottom: 1px solid var(--ev-border) !important;
+    padding: 16px 22px !important;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--ev-text-main) !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ev-admin-wrapper .panel-title,
+.ev-admin-wrapper .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ev-text-main);
+    margin: 0;
+}
+
+.ev-admin-wrapper .panel-body,
+.ev-admin-wrapper .card-body {
+    padding: 22px !important;
+}
+
+.ev-admin-wrapper .panel-footer,
+.ev-admin-wrapper .card-footer {
+    background: #f8fafc !important;
+    border-top: 1px solid var(--ev-border) !important;
+    padding: 14px 22px !important;
+}
+
+/* ==========================================================================
+   Data Tables
+   ========================================================================== */
+.ev-admin-wrapper .table-responsive {
+    border: 1px solid var(--ev-border);
+    border-radius: var(--ev-radius-md);
+    background: #ffffff;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    box-shadow: var(--ev-shadow-sm);
+}
+
+.ev-admin-wrapper .table {
+    width: 100%;
+    margin-bottom: 0 !important;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.ev-admin-wrapper .table > thead > tr > th {
+    background-color: #f8fafc !important;
+    color: #475569 !important;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--ev-border) !important;
+    border-top: none !important;
+    white-space: nowrap;
+}
+
+.ev-admin-wrapper .table > tbody > tr > td {
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: #1e293b;
+    border-top: 1px solid #f1f5f9;
+    vertical-align: middle;
+    transition: background-color 0.15s ease;
+}
+
+.ev-admin-wrapper .table-hover > tbody > tr:hover > td,
+.ev-admin-wrapper .table > tbody > tr:hover > td {
+    background-color: #f8fafc !important;
+}
+
+/* ==========================================================================
+   Status Badges & Labels
+   ========================================================================== */
+.ev-admin-wrapper .label,
+.ev-admin-wrapper .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+}
+
+.ev-admin-wrapper .label-success,
+.ev-admin-wrapper .badge-success {
+    background-color: var(--ev-success-bg) !important;
+    color: #065f46 !important;
+    border: 1px solid var(--ev-success-border);
+}
+
+.ev-admin-wrapper .label-danger,
+.ev-admin-wrapper .badge-danger {
+    background-color: var(--ev-danger-bg) !important;
+    color: #991b1b !important;
+    border: 1px solid var(--ev-danger-border);
+}
+
+.ev-admin-wrapper .label-warning,
+.ev-admin-wrapper .badge-warning {
+    background-color: var(--ev-warning-bg) !important;
+    color: #92400e !important;
+    border: 1px solid var(--ev-warning-border);
+}
+
+.ev-admin-wrapper .label-info,
+.ev-admin-wrapper .badge-info {
+    background-color: var(--ev-info-bg) !important;
+    color: #075985 !important;
+    border: 1px solid var(--ev-info-border);
+}
+
+.ev-admin-wrapper .label-default,
+.ev-admin-wrapper .badge-default {
+    background-color: #f1f5f9 !important;
+    color: #475569 !important;
+    border: 1px solid #cbd5e1;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.ev-admin-wrapper .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: var(--ev-radius-sm);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    text-decoration: none !important;
+}
+
+.ev-admin-wrapper .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.ev-admin-wrapper .btn-sm,
+.ev-admin-wrapper .btn-xs {
+    padding: 5px 11px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.ev-admin-wrapper .btn-primary {
+    background-color: var(--ev-primary) !important;
+    border-color: var(--ev-primary) !important;
+    color: #ffffff !important;
+}
+
+.ev-admin-wrapper .btn-primary:hover {
+    background-color: var(--ev-primary-hover) !important;
+    border-color: var(--ev-primary-hover) !important;
+}
+
+.ev-admin-wrapper .btn-success {
+    background-color: var(--ev-success) !important;
+    border-color: var(--ev-success) !important;
+    color: #ffffff !important;
+}
+
+.ev-admin-wrapper .btn-success:hover {
+    background-color: #059669 !important;
+    border-color: #059669 !important;
+}
+
+.ev-admin-wrapper .btn-danger {
+    background-color: var(--ev-danger) !important;
+    border-color: var(--ev-danger) !important;
+    color: #ffffff !important;
+}
+
+.ev-admin-wrapper .btn-danger:hover {
+    background-color: #dc2626 !important;
+    border-color: #dc2626 !important;
+}
+
+.ev-admin-wrapper .btn-default {
+    background-color: #ffffff !important;
+    border-color: var(--ev-border) !important;
+    color: #334155 !important;
+}
+
+.ev-admin-wrapper .btn-default:hover {
+    background-color: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+}
+
+/* ==========================================================================
+   Form Controls & Settings UI
+   ========================================================================== */
+.ev-admin-wrapper .form-group {
+    margin-bottom: 20px;
+}
+
+.ev-admin-wrapper label.control-label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.ev-admin-wrapper .form-control {
+    background-color: #ffffff;
+    border: 1px solid var(--ev-border);
+    border-radius: var(--ev-radius-sm);
+    padding: 10px 14px;
+    font-size: 13.5px;
+    color: var(--ev-text-main);
+    box-shadow: none;
+    transition: all 0.2s ease-in-out;
+    height: auto;
+}
+
+.ev-admin-wrapper .form-control:focus {
+    border-color: var(--ev-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    outline: none;
+}
+
+.ev-admin-wrapper textarea.form-control {
+    min-height: 100px;
+    line-height: 1.5;
+}
+
+/* Modern iOS Toggle Switch Enhancement */
+.ev-toggle-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.ev-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.ev-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.ev-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e1;
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.ev-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.ev-toggle-switch input:checked + .ev-toggle-slider {
+    background-color: var(--ev-primary);
+}
+
+.ev-toggle-switch input:checked + .ev-toggle-slider:before {
+    transform: translateX(20px);
+}
+
+/* ==========================================================================
+   Pagination
+   ========================================================================== */
+.ev-admin-wrapper .pagination {
+    display: inline-flex;
+    gap: 4px;
+    border-radius: var(--ev-radius-sm);
+    margin: 15px 0;
+}
+
+.ev-admin-wrapper .pagination > li > a,
+.ev-admin-wrapper .pagination > li > span {
+    border: 1px solid var(--ev-border) !important;
+    border-radius: var(--ev-radius-sm) !important;
+    color: #475569;
+    padding: 7px 13px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.ev-admin-wrapper .pagination > li > a:hover {
+    background: #f1f5f9 !important;
+    color: var(--ev-primary);
+}
+
+.ev-admin-wrapper .pagination > .active > a,
+.ev-admin-wrapper .pagination > .active > span {
+    background-color: var(--ev-primary) !important;
+    border-color: var(--ev-primary) !important;
+    color: #ffffff !important;
+}
+
+/* Copy Action Button */
+.ev-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    color: #64748b;
+    padding: 2px 6px;
+    font-size: 11px;
+    margin-left: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.ev-copy-btn:hover {
+    background: #e2e8f0;
+    color: var(--ev-primary);
+}
+
+/* Animation */
+@keyframes evFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
