@@ -130,7 +130,7 @@ function email_verifier_output($vars)
     $page_manager = new NNM_Page_Builder();
     $page_manager->modulename = "";
     $page_manager->modulelink = "email_verifier";
-    $page_manager->helplink = "https://siyam.bio.link/";
+    $page_manager->helplink = "";
     $page_manager->menu = [
         "Verified Clients" => ["href" => "", "istab" => false, "external" => false],
         "Unverified Clients" => ["href" => "c=UnverifiedClients", "address" => "UnverifiedClients", "istab" => false, "external" => false],

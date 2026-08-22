@@ -134,6 +134,15 @@
     margin: 0 !important;
 }
 
+/* Hide legacy bottom help button in nav row */
+.ev-admin-wrapper .nav-tabs > li.navbar-right,
+.ev-admin-wrapper .nav-pills > li.navbar-right,
+.ev-admin-wrapper .nav.navbar-nav > li.navbar-right,
+.ev-admin-wrapper .nav-tabs a[href*="siyam.bio.link"],
+.ev-admin-wrapper .navbar-nav a[href*="siyam.bio.link"] {
+    display: none !important;
+}
+
 .ev-admin-wrapper .nav-tabs > li > a,
 .ev-admin-wrapper .nav-pills > li > a,
 .ev-admin-wrapper .nav.navbar-nav > li > a {
