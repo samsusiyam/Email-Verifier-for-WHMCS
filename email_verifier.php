@@ -13,7 +13,7 @@ function email_verifier_license($licensekey = "")
 
 function email_verifier_config()
 {
-    return ["name" => "Email Verifier", "description" => "Email Verifier module that optimizes email verification processes, offering enhanced security and reliability by validating user email address and ensuring accurate communication between clients and your WHMCS.", "version" => "1.1.0", "author" => "<a href='https://siyam.bio.link/' target='_blank'>99modules</a>", "language" => "english", "fields" => ["nodeletedb" => ["FriendlyName" => "Database Table", "Type" => "yesno", "Size" => "25", "Description" => "Tick this box to delete the tables from the database when deactivating the module."],]];
+    return ["name" => "Email Verifier", "description" => "Email Verifier module that optimizes email verification processes, offering enhanced security and reliability by validating user email address and ensuring accurate communication between clients and your WHMCS.", "version" => "1.1.0", "author" => "<a href='https://hostnibo.com/' target='_blank'>HostNibo</a>", "language" => "english", "fields" => ["nodeletedb" => ["FriendlyName" => "Database Table", "Type" => "yesno", "Size" => "25", "Description" => "Tick this box to delete the tables from the database when deactivating the module."],]];
 }
 
 function email_verifier_activate()
